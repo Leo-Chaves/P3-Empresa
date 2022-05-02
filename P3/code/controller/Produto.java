@@ -1,3 +1,5 @@
+package P3.code.controller;
+
 public class Produto {
     public String nome;
     public double preco;

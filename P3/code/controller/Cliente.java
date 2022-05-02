@@ -1,8 +1,8 @@
-
+package P3.code.controller;
 
 import java.util.LinkedList;
 
-public class Cliente{
+public class Cliente implements Operações{
   private LinkedList<String> codesFrinds = new LinkedList<String>();
   private String code;
   private String nome;
@@ -74,4 +74,15 @@ public class Cliente{
   public void showFrieds(){
    System.out.println("Amigos:" + codesFrinds);
   }
+ 
+  @Override
+   public void envioAmigo(Cliente cliente, Cliente amigo,int envio,  String codeFriend){
+   amigo.setToken(amigo.getToken() + envio);
+   cliente.setToken(cliente.getToken() - envio); 
+  }
+
+  @Override
+   public void CompraCliente(Cliente cliente, int compra){
+   cliente.setToken(cliente.getToken() - compra); 
+  } 
 }

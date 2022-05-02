@@ -1,7 +1,5 @@
-  /*
-Metodo cadastrar produto(Classe Produto)
-Metodo para exibir o lucro de vendas da empresa
-*/
+package P3.code.controller;
+
 import java.util.LinkedList;
 
 public class Empresa{
