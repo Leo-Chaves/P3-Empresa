@@ -1,6 +1,16 @@
-package P3.code.controller;
+package controller;
 
+/*
+Metodo depositar e sacar token (Cada token sera igual a 1 real)
+Metodo trocar informações do perfil do cliente
+Metodo para envio de token para amigos
+Metodo Desconto para clientes vip(herança do cliente caso ele compre o VIP(custo 100 tokens))
+Metodo para exibir o historico de compras
+*/
 import java.util.LinkedList;
+import java.util.Scanner;
+
+import model.Operações;
 
 public class Cliente implements Operações{
   private LinkedList<String> codesFrinds = new LinkedList<String>();

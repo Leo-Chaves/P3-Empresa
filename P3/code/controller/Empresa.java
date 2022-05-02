@@ -1,9 +1,11 @@
-package P3.code.controller;
+package controller;
 
 import java.util.LinkedList;
 
+
 public class Empresa{
-  private LinkedList<Produto> produtos = new LinkedList<Produto>();
+  private static LinkedList<Produto> produtos = new LinkedList<Produto>();
+  private LinkedList<Cliente> clientes = new LinkedList<Cliente>();
   private String nome;
   private String telefone;
   private String cnpj;
@@ -47,9 +49,8 @@ public class Empresa{
     public void setSaldo(double saldo) {
       this.saldo = saldo;
     }
-
-  public void cadastrarProduto(String nome, double preco, String codigo, int estoque){
-    Produto produto = new Produto( nome, preco, codigo, estoque);
-    this.produtos.add(produto);
-   }
+    public static void cadastrarProduto(String nome, double preco, String codigo, int estoque){
+      Produto produto = new Produto( nome, preco, codigo, estoque);
+      produtos.add(produto);
+     }
   }

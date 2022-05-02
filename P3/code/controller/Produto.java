@@ -1,4 +1,4 @@
-package P3.code.controller;
+package controller;
 
 public class Produto {
     public String nome;
