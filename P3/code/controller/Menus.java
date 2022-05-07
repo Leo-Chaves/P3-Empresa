@@ -1,16 +1,15 @@
 package controller;
 import java.util.LinkedList;
 import java.util.Scanner;
-import controller.Empresa;
 
 public class Menus{
     public static LinkedList<Cliente> clientes = new LinkedList<Cliente>();
     public static LinkedList<Empresa> empresas = new LinkedList<Empresa>();
+    private static int op, cl, opC, opCA, opADC, opE, opADE;
 
   public static void menuPrincipal() throws IllegalAccessException{
     
     Scanner in = new Scanner(System.in);
-        int op, cl, opC, opCA, opADC, opE, opADE;
         System.out.println("___  ___ _____ __  __ __ __");
         System.out.println("|||  ||| ||    ||  || || ||");
         System.out.println("|||\\/||| ||--- ||\\\\|| || ||");
@@ -31,16 +30,20 @@ public class Menus{
                                 opcaoCliente();
                                 opC = in.nextInt();
                                 if (opC == 1) {
-                                    // Exibir a lista de produtos cadastrados
+                                    // Exibir a lista de produtos
+                                    empresas.getFirst().showProdutos();
                                 } else if (opC == 2) {
                                     // Comprar tokens
+
                                 } else if (opC == 3) {
                                     // Criar um menu novo com as opcoes relaciondas a amigos dentro de cliente
                                     do {
                                         menuClienteAmigo();
                                         opCA = in.nextInt();
                                         if (opCA == 1) {
+                                            //Cliente e = ;
                                             // adicionar um cliente
+                                            //clientes.add(e);
                                         } else if (opCA == 2) {
                                             // remover um amigo
                                         } else if (opCA == 3) {
@@ -60,6 +63,9 @@ public class Menus{
                                 			dc = in.nextInt();
                                 		}
                                 	}while(dc!=0);
+                                } else if(opC == 5){
+                                    //volta para menu cliente
+                                    menuPrincipal();
                                 }
                             } while (opC != 0);
                         }
@@ -107,7 +113,10 @@ public class Menus{
                         }
                     } else if (cl == 2) {// Opcoes de cadastrar
                         cadastroEmpresa();
-                    } else {
+                    } else if (cl == 0){
+                       menuPrincipal();
+                    }else
+                    {
                         System.out.println("Opção inválida...");
                         throw new IllegalAccessException("");
                     }
@@ -135,6 +144,7 @@ public class Menus{
         System.out.println("Deseja logar ou cadastrar?");
         System.out.println("[1] para logar");
         System.out.println("[2] para cadastrar");
+        System.out.println("[0] para voltar");
         System.out.print("Digite:");
     }
 
@@ -238,6 +248,7 @@ public class Menus{
         System.out.println("[2] para comprar Tokens");
         System.out.println("[3] para amigos");// criar um novo menu para as opcoes relacionadas aos amigos
         System.out.println("[4] para alterar seus dados");
+        System.out.println("[5] para voltar");
         System.out.println("[0] para Sair!");
         System.out.print("Digite:");
     }

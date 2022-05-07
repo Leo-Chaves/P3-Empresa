@@ -8,7 +8,6 @@ Metodo Desconto para clientes vip(herança do cliente caso ele compre o VIP(cust
 Metodo para exibir o historico de compras
 */
 import java.util.LinkedList;
-import java.util.Scanner;
 
 import model.Operações;
 

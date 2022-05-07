@@ -53,4 +53,7 @@ public class Empresa{
       Produto produto = new Produto( nome, preco, codigo, estoque);
       produtos.add(produto);
      }
+     public void showProdutos(){
+       System.out.println(produtos);
+     }
   }
