@@ -22,7 +22,7 @@ public class Cliente implements Operações{
   private int token;
   private String senha;
   
-  public Cliente(String code, String nome, String genero, String telefone, String cpf, String senha) {
+  public Cliente(String code, String nome, String genero, String telefone, String cpf,int token, String senha) {
 		super();
 		this.code = code;
 		this.nome = nome;
