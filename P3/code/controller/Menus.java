@@ -354,7 +354,7 @@ public static void cadastroProduto(){
         System.out.print("Informe o nome do produto que deseja vender: ");
         String nome = in.next();
   
-        System.out.print("Informe a quntidade de produto que deseja vender: ");
+        System.out.print("Informe a quantidade de produto que deseja vender: ");
         int estoque = in.nextInt();
   
         System.out.print("Informe o preço do produto que deseja vender: ");
@@ -396,7 +396,7 @@ public static boolean loginEmpresa() {
           System.out.print("Informe o nome da empresa: ");
           String nome = in.next();
   
-          System.out.print("Informe o CNPJ da empresa (apenas nÃºmeros): ");
+          System.out.print("Informe o CNPJ da empresa (apenas números): ");
           String cnpj = in.next();
           while (cnpj.length() != 14) {// CNPJ tem que ter 14 digitos
               System.out.print("CNPJ incorreto, digite novamente (apenas nÃºmeros, 14 numeros): ");
