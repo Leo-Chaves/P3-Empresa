@@ -226,13 +226,18 @@ public class Menus {
     }
 
     public static void compraProduto(){
+        // onde tiver getFirst mudar para uma busca 
+
         Scanner in = new Scanner(System.in);
         empresas.getFirst().showProdutos();
         System.out.print("Digite o codigo do produto que deseja comprar: ");
         String code = in.nextLine();
-        for(int i = 0; i = produtos.size; i++){
-            //ERRO no acesso da linked List
-        }
+        boolean vf = buscaProduto(code);
+         if (vf == true){
+             Cliente.compraCliente(clientes.getFirst(), Empresa.produtos.getFirst().getPreco());
+             Empresa.produtos.getFirst().retirarEstoque(1);
+             System.out.println("saldo atual: " + clientes.getFirst().getToken());
+         }
     }
 
 
@@ -417,6 +422,17 @@ public class Menus {
         return false;
     }
 
+    public static boolean buscaProduto(String codigo) {
+        // Metodo para buscar na lista de cliente para fazer login
+        for (int i = 0; i < Empresa.produtos.size(); i++) {
+            Produto aux = Empresa.produtos.get(i);
+            if (aux.getNome().equalsIgnoreCase(codigo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean verificarCD(String cpf, String senha) {
 
         // Metodo para buscar cliente ja existente
@@ -439,7 +455,7 @@ public class Menus {
         int estoque = in.nextInt();
 
         System.out.print("Informe o preço do produto que deseja vender: ");
-        double preco = in.nextDouble();
+        int preco = in.nextInt();
 
         System.out.print("digite o codigo para o produto: ");
         String codigo = in.next();

@@ -18,7 +18,7 @@ public class Cliente implements Operações{
   private String genero;
   private String telefone;
   private String cpf;
-  private int token;
+  private static int token;
   private String senha;
   
   public Cliente(String code, String nome, String genero, String telefone, String cpf,int token, String senha) {
@@ -90,8 +90,13 @@ public class Cliente implements Operações{
    cliente.setToken(cliente.getToken() - envio); 
   }
 
-  @Override
-   public void CompraCliente(Cliente cliente, int compra){
+   public static void compraCliente(Cliente cliente, int compra){
    cliente.setToken(cliente.getToken() - compra); 
-  } 
+  }
+
+@Override
+public void CompraCliente(Cliente cliente, int compra) {
+	// TODO Auto-generated method stub
+	
+} 
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 
 public class Empresa{
-  private static LinkedList<Produto> produtos = new LinkedList<Produto>();
+  public static LinkedList<Produto> produtos = new LinkedList<Produto>();
   private LinkedList<Cliente> clientes = new LinkedList<Cliente>();
   private String nome;
   private String telefone;
@@ -49,11 +49,14 @@ public class Empresa{
     public void setSaldo(double saldo) {
       this.saldo = saldo;
     }
-    public static void cadastrarProduto(String nome, double preco, String codigo, int estoque){
+    public static void cadastrarProduto(String nome, int preco, String codigo, int estoque){
       Produto produto = new Produto( nome, preco, codigo, estoque);
       produtos.add(produto);
      }
      public void showProdutos(){
        System.out.println(produtos);
+     }
+     public int sizeProdutos(){
+      return produtos.size();
      }
   }

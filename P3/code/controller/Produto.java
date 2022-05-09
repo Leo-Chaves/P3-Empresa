@@ -2,7 +2,7 @@ package controller;
 
 public class Produto {
     public String nome;
-    public double preco;
+    public int preco;
     public String codigo;
     private int estoque;
 
@@ -13,7 +13,7 @@ public class Produto {
     }
 
     //construtor
-    public Produto(String nome, double preco, String codigo, int estoque) {
+    public Produto(String nome, int preco, String codigo, int estoque) {
         this.nome = nome;
         this.preco = preco;
         this.codigo = codigo;
@@ -24,7 +24,7 @@ public class Produto {
         return nome;
     }
 
-    public double getPreco() {
+    public int getPreco() {
         return preco;
     }
 
@@ -40,7 +40,7 @@ public class Produto {
         this.nome = nome;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(int preco) {
         this.preco = preco;
     }
 
