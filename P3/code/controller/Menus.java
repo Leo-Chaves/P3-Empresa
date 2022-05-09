@@ -1,15 +1,16 @@
 package controller;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Menus{
+public class Menus {
     public static LinkedList<Cliente> clientes = new LinkedList<Cliente>();
     public static LinkedList<Empresa> empresas = new LinkedList<Empresa>();
     private static int op, cl, opC, opCA, opADC, opE, opADE;
 
-  public static void menuPrincipal() throws IllegalAccessException{
-    
-    Scanner in = new Scanner(System.in);
+    public static void menuPrincipal() throws IllegalAccessException {
+
+        Scanner in = new Scanner(System.in);
         System.out.println("___  ___ _____ __  __ __ __");
         System.out.println("|||  ||| ||    ||  || || ||");
         System.out.println("|||\\/||| ||--- ||\\\\|| || ||");
@@ -30,10 +31,11 @@ public class Menus{
                                 opcaoCliente();
                                 opC = in.nextInt();
                                 if (opC == 1) {
-                                    // Exibir a lista de produtos
-                                    empresas.getFirst().showProdutos();
+                                    // Exibir a lista de produtos para compra
+                                    compraProduto();
                                 } else if (opC == 2) {
                                     // Comprar tokens
+                                    compraToken();
 
                                 } else if (opC == 3) {
                                     // Criar um menu novo com as opcoes relaciondas a amigos dentro de cliente
@@ -41,9 +43,9 @@ public class Menus{
                                         menuClienteAmigo();
                                         opCA = in.nextInt();
                                         if (opCA == 1) {
-                                            //Cliente e = ;
+                                            // Cliente e = ;
                                             // adicionar um cliente
-                                            //clientes.add(e);
+                                            // clientes.add(e);
                                         } else if (opCA == 2) {
                                             // remover um amigo
                                         } else if (opCA == 3) {
@@ -52,25 +54,27 @@ public class Menus{
                                     } while (opCA != 0);
                                 } else if (opC == 4) {
                                     // Alterar dados
-                                	int dc;
-                                	do {
-                                		menuAlterarDadosCliente();
-                                		System.out.println("Deseja alterar mais dados? ");
-                                		System.out.println("[1] para sim, [0] para não: ");
-                                		dc = in.nextInt();
-                                		while(dc!=0&&dc!=1) {
-                                			System.out.println("Opção inválida... digite novamente: ");
-                                			dc = in.nextInt();
-                                		}
-                                	}while(dc!=0);
-                                } else if(opC == 5){
-                                    //volta para menu cliente
+                                    int dc;
+                                    do {
+                                        menuAlterarDadosCliente();
+                                        System.out.println("Deseja alterar mais dados? ");
+                                        System.out.println("[1] para sim, [0] para não: ");
+                                        dc = in.nextInt();
+                                        while (dc != 0 && dc != 1) {
+                                            System.out.println("Opção inválida... digite novamente: ");
+                                            dc = in.nextInt();
+                                        }
+                                    } while (dc != 0);
+                                } else if (opC == 5) {
+                                    // volta para menu cliente
                                     menuPrincipal();
                                 }
                             } while (opC != 0);
                         }
                     } else if (cl == 2) {// opcoes de cadastrar
                         cadastroCliente();
+                    } else if (cl == 0) {
+                        menuPrincipal();
                     } else {
                         System.out.println("Opção inválida...");
                         throw new IllegalAccessException("");
@@ -85,38 +89,34 @@ public class Menus{
                         boolean tfe = loginEmpresa();
                         if (tfe == true) {// Empresa entrou na conta
                             /* aqui estarao todas as acoes da empresa */
-                            do{
-                            opcaoEmpresa();
-                            opE = in.nextInt();
-                            if(opE == 1){
-                                //adicionar um produto no catalogo
-                              cadastroProduto();
+                            do {
+                                opcaoEmpresa();
+                                opE = in.nextInt();
+                                if (opE == 1) {
+                                    // adicionar um produto no catalogo
+                                    cadastroProduto();
 
-                              
-                            }else if(opE == 2){
-                                //para alterar seus dados
-                                do{
-                                menuAlterarDadosEmpresa();
-                                opADE = in.nextInt();
-                                if(opADE == 1){
-                                    //alterar nome empresa
-                                }else if(opADE == 2){
-                                    //alterar telefone empresa
-                                }else if(opADE == 3){
-                                    //alterar cnpj empresa
-                                }else if(opADE == 4){
-                                    //alterar saldo empresa
+                                } else if (opE == 2) {
+                                    // para alterar seus dados
+                                    int dc;
+                                    do {
+                                        menuAlterarDadosEmpresa();
+                                        System.out.println("Deseja alterar mais dados? ");
+                                        System.out.println("[1] para sim, [0] para não: ");
+                                        dc = in.nextInt();
+                                        while (dc != 0 && dc != 1) {
+                                            System.out.println("Opção inválida... digite novamente: ");
+                                            dc = in.nextInt();
+                                        }
+                                    } while (dc != 0);
                                 }
-                                }while(opADE != 0);
-                            }        
-                            }while(opE != 0);
+                            } while (opE != 0);
                         }
                     } else if (cl == 2) {// Opcoes de cadastrar
                         cadastroEmpresa();
-                    } else if (cl == 0){
-                       menuPrincipal();
-                    }else
-                    {
+                    } else if (cl == 0) {
+                        menuPrincipal();
+                    } else {
                         System.out.println("Opção inválida...");
                         throw new IllegalAccessException("");
                     }
@@ -129,18 +129,18 @@ public class Menus{
                 throw new IllegalAccessException("");
             }
         } while (op != 0);
-  }
-  
-  public static void menuInicial() {
+    }
+
+    public static void menuInicial() {
         System.out.println("Menu");
         System.out.println("Deseja iniciar sessão como cliente ou empresa?");
         System.out.println("[1] para cliente");
         System.out.println("[2] para empresa");
         System.out.println("[0] para encerrar");
         System.out.print("Digite:");
-    }  
+    }
 
-  public static void menuCL() {// Menu cadastro ou login
+    public static void menuCL() {// Menu cadastro ou login
         System.out.println("Deseja logar ou cadastrar?");
         System.out.println("[1] para logar");
         System.out.println("[2] para cadastrar");
@@ -148,7 +148,7 @@ public class Menus{
         System.out.print("Digite:");
     }
 
-  public static void menuClienteAmigo() {
+    public static void menuClienteAmigo() {
         System.out.println("Menu");
         System.out.println("[1] para adicionar um amigo");
         System.out.println("[2] para remover um amigo");
@@ -156,21 +156,21 @@ public class Menus{
         System.out.println("[0] para Voltar!");
     }
 
-  public static void menuAlterarDadosCliente() {
-	  	Scanner in = new Scanner(System.in);
-	  	int opADC;
-	  	System.out.println("Digite os dados abaixo para alteração de dados do perfil");
-    	System.out.print("Nome: ");
-    	String nome = in.next();
-    	System.out.print("Senha: ");
-    	String senha = in.next();
-    	System.out.println("");
-    	boolean vf = buscaLoginCliente(nome, senha);
-    	if(vf==true) {
-        	for (int i = 0; i < clientes.size(); i++) {
+    public static void menuAlterarDadosCliente() {
+        Scanner in = new Scanner(System.in);
+        int opADC;
+        System.out.println("Digite os dados abaixo para alteração de dados do perfil");
+        System.out.print("Nome: ");
+        String nome = in.next();
+        System.out.print("Senha: ");
+        String senha = in.next();
+        System.out.println("");
+        boolean vf = buscaLoginCliente(nome, senha);
+        if (vf == true) {
+            for (int i = 0; i < clientes.size(); i++) {
                 Cliente aux = clientes.get(i);
                 if (aux.getNome().equalsIgnoreCase(nome) && aux.getSenha().equals(senha)) {
-                	System.out.println("Opções: ");
+                    System.out.println("Opções: ");
                     System.out.println("[1] para alterar seu nome");
                     System.out.println("[2] para alterar seu genero");
                     System.out.println("[3] para alterar seu telefone");
@@ -180,71 +180,152 @@ public class Menus{
                     opADC = in.nextInt();
                     if (opADC == 1) {
                         // alterar nome
-                    	System.out.print("Digite seu novo nome: ");
-                    	String newNome = in.next();
-                    	aux.setNome(newNome);
+                        System.out.print("Digite seu novo nome: ");
+                        String newNome = in.next();
+                        aux.setNome(newNome);
                     } else if (opADC == 2) {
                         // alterar genero
-                    	System.out.print("Digite seu novo gênero: ");
-                    	String newGen = in.next();
-                    	aux.setGenero(newGen);
+                        System.out.print("Digite seu novo gênero: ");
+                        String newGen = in.next();
+                        aux.setGenero(newGen);
                     } else if (opADC == 3) {
                         // alterar telefone
-                    	System.out.print("Digite apenas o DDD: ");
-                    	String ddd= in.next();
-                    	while(ddd.length()<2||ddd.length()>3) {
-                    		System.out.print("DDD inválido digite novamente: ");
-                    		ddd = in.next();
-                    	}
-                    	System.out.print("Digite o seu número de celular: ");
-                    	String num = in.next();
-                    	while(num.length()<8||num.length()>10) {
-                    		System.out.print("Número inválido digite novamente: ");
-                    		ddd = in.next();
-                    	}
-                    	String newNum = "("+ddd+")"+num;
-                    	aux.setTelefone(newNum);
+                        System.out.print("Digite apenas o DDD: ");
+                        String ddd = in.next();
+                        while (ddd.length() < 2 || ddd.length() > 3) {
+                            System.out.print("DDD inválido digite novamente: ");
+                            ddd = in.next();
+                        }
+                        System.out.print("Digite o seu número de celular: ");
+                        String num = in.next();
+                        while (num.length() < 8 || num.length() > 10) {
+                            System.out.print("Número inválido digite novamente: ");
+                            ddd = in.next();
+                        }
+                        String newNum = "(" + ddd + ")" + num;
+                        aux.setTelefone(newNum);
                     } else if (opADC == 4) {
                         // alterar cpf
-                    	System.out.print("Digite seu novo CPF: ");
-                    	String newCPF = in.next();
-                    	while (newCPF.length() != 11) {// CPF tem que ter 11 digitos
+                        System.out.print("Digite seu novo CPF: ");
+                        String newCPF = in.next();
+                        while (newCPF.length() != 11) {// CPF tem que ter 11 digitos
                             System.out.print("CPF incorreto, digite novamente (apenas números): ");
                             newCPF = in.next();
                         }
-                    	aux.setGenero(newCPF);
-                    }
-                    else {
-                    	opADC = 0;
+                        aux.setGenero(newCPF);
+                    } else {
+                        opADC = 0;
                     }
                 }
             }
-    	}else {
-        	System.out.println("Nome ou senha incorretos... Tente novamente.");
-        	System.out.println("");
-        	opADC = 0;
+        } else {
+            System.out.println("Nome ou senha incorretos... Tente novamente.");
+            System.out.println("");
+            opADC = 0;
         }
     }
 
-  public static void opcaoEmpresa(){
+    public static void compraProduto(){
+        Scanner in = new Scanner(System.in);
+        empresas.getFirst().showProdutos();
+        System.out.print("Digite o codigo do produto que deseja comprar: ");
+        String code = in.nextLine();
+        for(int i = 0; i = produtos.size; i++){
+            //ERRO no acesso da linked List
+        }
+    }
+
+
+    public static void compraToken() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Digite os dados abaixo para alteração de dados do perfil");
+        System.out.print("Nome: ");
+        String nome = in.next();
+        System.out.print("Senha: ");
+        String senha = in.next();
+        System.out.println("");
+        boolean vf = buscaLoginCliente(nome, senha);
+        if (vf == true) {
+            System.out.print("Informe a quantia que deseja depositar: ");
+            int newToken = in.nextInt();
+            for (int i = 0; i < clientes.size(); i++) {
+                Cliente aux = clientes.get(i);
+                if (aux.getNome().equalsIgnoreCase(nome) && aux.getSenha().equals(senha)) {
+                    aux.setToken(aux.getToken() + newToken);
+                }
+            }
+        }
+    }
+
+    public static void opcaoEmpresa() {
         System.out.println("Menu");
         System.out.println("[1] para adicionar um novo produto");
         System.out.println("[2] para alterar seus dados");
         System.out.println("[0] para Sair!");
     }
 
-  public static void menuAlterarDadosEmpresa() {
-        System.out.println("Menu");
-        System.out.println("[1] para alterar seu nome");
-        System.out.println("[2] para alterar seu telefone");
-        System.out.println("[3] para alterar seu cnpj");
-        System.out.println("[4] para alterar seu saldo");
-        System.out.println("[0] para Voltar!");
+    public static void menuAlterarDadosEmpresa() {
+        Scanner in = new Scanner(System.in);
+        int opADC;
+        System.out.println("Digite os dados abaixo para alteração de dados do perfil");
+        System.out.print("CNPJ: ");
+        String cnpj = in.next();
+        System.out.print("senha: ");
+        String senha = in.next();
+        System.out.println("");
+        boolean vf = buscaLoginEmpresa(cnpj, senha);
+        if (vf == true) {
+            for (int i = 0; i < empresas.size(); i++) {
+                Empresa aux = empresas.get(i);
+                if (aux.getCnpj().equalsIgnoreCase(cnpj) && aux.getSenha().equals(senha)) {
+                    System.out.println("Opções: ");
+                    System.out.println("[1] para alterar seu nome");
+                    System.out.println("[2] para alterar seu cnpj");
+                    System.out.println("[3] para alterar seu telefone");
+                    System.out.println("[0] para Voltar!");
+                    System.out.print("Digite: ");
+                    opADC = in.nextInt();
+                    if (opADC == 1) {
+                        // alterar nome
+                        System.out.print("Digite seu novo nome: ");
+                        String newNome = in.next();
+                        aux.setNome(newNome);
+                    } else if (opADC == 2) {
+                        // alterar genero
+                        System.out.print("Digite seu novo cnpj: ");
+                        String newCnpj = in.next();
+                        aux.setCnpj(newCnpj);
+                    } else if (opADC == 3) {
+                        // alterar telefone
+                        System.out.print("Digite apenas o DDD: ");
+                        String ddd = in.next();
+                        while (ddd.length() < 2 || ddd.length() > 3) {
+                            System.out.print("DDD inválido digite novamente: ");
+                            ddd = in.next();
+                        }
+                        System.out.print("Digite o seu número de celular: ");
+                        String num = in.next();
+                        while (num.length() < 8 || num.length() > 10) {
+                            System.out.print("Número inválido digite novamente: ");
+                            ddd = in.next();
+                        }
+                        String newNum = "(" + ddd + ")" + num;
+                        aux.setTelefone(newNum);
+                    } else {
+                        opADC = 0;
+                    }
+                }
+            }
+        } else {
+            System.out.println("CNPJ ou senha incorretos... Tente novamente.");
+            System.out.println("");
+            opADC = 0;
+        }
     }
 
-  public static void opcaoCliente() {
+    public static void opcaoCliente() {
         System.out.println("Menu");
-        System.out.println("[1] para ver os produtos");
+        System.out.println("[1] para comprar produtos");
         System.out.println("[2] para comprar Tokens");
         System.out.println("[3] para amigos");// criar um novo menu para as opcoes relacionadas aos amigos
         System.out.println("[4] para alterar seus dados");
@@ -283,22 +364,22 @@ public class Menus{
         System.out.print("Informe seu CPF (apenas números): ");
         String cpf = in.next();
         while (cpf.length() != 11) {// CPF tem que ter 11 digitos
-            System.out.print("CPF incorreto, digite novamente (apenas números): ");//CPF 11 DIGITOS PARA TEST
+            System.out.print("CPF incorreto, digite novamente (apenas números): ");// CPF 11 DIGITOS PARA TEST
             cpf = in.next();
         }
 
         System.out.print("Informe seu DDD: ");
         String ddd = in.next();
-        while(ddd.length()<2||ddd.length()>3) {
-    		System.out.print("DDD inválido digite novamente: ");
-    		ddd = in.next();
-    	}
+        while (ddd.length() < 2 || ddd.length() > 3) {
+            System.out.print("DDD inválido digite novamente: ");
+            ddd = in.next();
+        }
         System.out.print("Informe seu númmero de telefone: ");
         String numc = in.next();
-        while(numc.length()<8||numc.length()>10) {
-    		System.out.print("Número inválido digite novamente: ");
-    		numc = in.next();
-    	}
+        while (numc.length() < 8 || numc.length() > 10) {
+            System.out.print("Número inválido digite novamente: ");
+            numc = in.next();
+        }
         String telefone = "(" + ddd + ")" + numc;
 
         System.out.print("Informe seu gênero: ");
@@ -309,10 +390,10 @@ public class Menus{
 
         System.out.print("Informe uma senha: ");
         String senha = in.next();
-        
+
         System.out.print("Informe a quantia que deseja depositar para compras no App: ");
         int token = in.nextInt();
-        
+
         boolean cd = verificarCD(cpf, senha);// verificando se jÃ¡ existe conta utilizando esse cpf ou senha
         if (cd == false) {
             Cliente cliente = new Cliente(code, nome, genero, telefone, cpf, token, senha);// Criou novo cliente
@@ -324,8 +405,8 @@ public class Menus{
             System.out.println("");
         }
     }
-  
-public static boolean buscaLoginCliente(String nome, String senha) {
+
+    public static boolean buscaLoginCliente(String nome, String senha) {
         // Metodo para buscar na lista de cliente para fazer login
         for (int i = 0; i < clientes.size(); i++) {
             Cliente aux = clientes.get(i);
@@ -336,7 +417,7 @@ public static boolean buscaLoginCliente(String nome, String senha) {
         return false;
     }
 
-public static boolean verificarCD(String cpf, String senha) {
+    public static boolean verificarCD(String cpf, String senha) {
 
         // Metodo para buscar cliente ja existente
         for (int i = 0; i < clientes.size(); i++) {
@@ -347,90 +428,90 @@ public static boolean verificarCD(String cpf, String senha) {
         }
         return false;
     }
-    
-public static void cadastroProduto(){
-    
+
+    public static void cadastroProduto() {
+
         Scanner in = new Scanner(System.in);
         System.out.print("Informe o nome do produto que deseja vender: ");
         String nome = in.next();
-  
+
         System.out.print("Informe a quantidade de produto que deseja vender: ");
         int estoque = in.nextInt();
-  
+
         System.out.print("Informe o preço do produto que deseja vender: ");
         double preco = in.nextDouble();
-  
+
         System.out.print("digite o codigo para o produto: ");
         String codigo = in.next();
-  // Criou um novo produto
-        Empresa.cadastrarProduto(nome,preco,codigo,estoque);
+        // Criou um novo produto
+        Empresa.cadastrarProduto(nome, preco, codigo, estoque);
         System.out.println("Produto Cadastrado Com Sucesso!");
-        
+
     }
-  
-public static boolean loginEmpresa() {
-          Scanner in = new Scanner(System.in);
-          boolean retorno;
-          do {
-              System.out.println("Digite");
-              System.out.print("CNPJ: ");
-              String cnpj = in.next();
-              System.out.print("Senha: ");
-              String senha = in.next();
-              retorno = buscaLoginEmpresa(cnpj, senha);
-              if (retorno == false) {// Aqui ele da a escolha para tentar fazer login novamente
-                  System.out.println("Login invÃ¡lido... Deseja tentar denovo?");
-                  System.out.println("Digite [1] para sim,[2] para nÃ£o: ");
-                  int a = in.nextInt();
-                  if (a == 2) {
-                      break;
-                  }
-              }
-          } while (retorno != true);
-          return retorno;
-      }
-  
-      public static void cadastroEmpresa() {
-          Scanner in = new Scanner(System.in);
-  
-          System.out.print("Informe o nome da empresa: ");
-          String nome = in.next();
-  
-          System.out.print("Informe o CNPJ da empresa (apenas números): ");
-          String cnpj = in.next();
-          while (cnpj.length() != 14) {// CNPJ tem que ter 14 digitos
-              System.out.print("CNPJ incorreto, digite novamente (apenas nÃºmeros, 14 numeros): ");
-              cnpj = in.next();
-          }
-  
-          System.out.print("Informe o DDD: ");
-          String ddd = in.next();
-          System.out.println("Informe o número de telefone: ");
-          String numc = in.next();
-          String telefone = "(" + ddd + ")" + numc;
-  
-          System.out.print("Informe o saldo da empresa: ");
-          double saldo = in.nextDouble();
-  
-          System.out.print("Informe uma senha: ");
-          String senha = in.next();
-  
-          Empresa empresa = new Empresa(nome, telefone, cnpj, saldo, senha);// Criou nova empresa
-          empresas.add(empresa);// Adiciona a lista de empresas
-          System.out.println("Empresa cadastrada com sucesso!");
-      }
-  
-     public static boolean buscaLoginEmpresa(String cnpj, String senha) {
-          /*
-           * Metodo para buscar na lista de empresa para fazer login
-           * (Apesar de apenas ter uma empresa criando a lista facilita)
-           */
-          for (int i = 0; i < empresas.size(); i++) {
-              Empresa aux = empresas.get(i);
-              if (aux.getCnpj().equals(cnpj) && aux.getSenha().equals(senha)) {
-                  return true;
-              }
-          }
-          return true;
-      }
+
+    public static boolean loginEmpresa() {
+        Scanner in = new Scanner(System.in);
+        boolean retorno;
+        do {
+            System.out.println("Digite");
+            System.out.print("CNPJ: ");
+            String cnpj = in.next();
+            System.out.print("Senha: ");
+            String senha = in.next();
+            retorno = buscaLoginEmpresa(cnpj, senha);
+            if (retorno == false) {// Aqui ele da a escolha para tentar fazer login novamente
+                System.out.println("Login invÃ¡lido... Deseja tentar denovo?");
+                System.out.println("Digite [1] para sim,[2] para nÃ£o: ");
+                int a = in.nextInt();
+                if (a == 2) {
+                    break;
+                }
+            }
+        } while (retorno != true);
+        return retorno;
+    }
+
+    public static void cadastroEmpresa() {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Informe o nome da empresa: ");
+        String nome = in.next();
+
+        System.out.print("Informe o CNPJ da empresa (apenas números): ");
+        String cnpj = in.next();
+        while (cnpj.length() != 14) {// CNPJ tem que ter 14 digitos
+            System.out.print("CNPJ incorreto, digite novamente (apenas nÃºmeros, 14 numeros): ");
+            cnpj = in.next();
+        }
+
+        System.out.print("Informe o DDD: ");
+        String ddd = in.next();
+        System.out.println("Informe o número de telefone: ");
+        String numc = in.next();
+        String telefone = "(" + ddd + ")" + numc;
+
+        System.out.print("Informe o saldo da empresa: ");
+        double saldo = in.nextDouble();
+
+        System.out.print("Informe uma senha: ");
+        String senha = in.next();
+
+        Empresa empresa = new Empresa(nome, telefone, cnpj, saldo, senha);// Criou nova empresa
+        empresas.add(empresa);// Adiciona a lista de empresas
+        System.out.println("Empresa cadastrada com sucesso!");
+    }
+
+    public static boolean buscaLoginEmpresa(String cnpj, String senha) {
+        /*
+         * Metodo para buscar na lista de empresa para fazer login
+         * (Apesar de apenas ter uma empresa criando a lista facilita)
+         */
+        for (int i = 0; i < empresas.size(); i++) {
+            Empresa aux = empresas.get(i);
+            if (aux.getCnpj().equals(cnpj) && aux.getSenha().equals(senha)) {
+                return true;
+            }
+        }
+        return true;
+    }
 }
