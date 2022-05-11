@@ -227,17 +227,29 @@ public class Menus {
 
     public static void compraProduto(){
         // onde tiver getFirst mudar para uma busca 
-
         Scanner in = new Scanner(System.in);
-        empresas.getFirst().showProdutos();
-        System.out.print("Digite o codigo do produto que deseja comprar: ");
-        String code = in.nextLine();
-        boolean vf = buscaProduto(code);
-         if (vf == true){
-             Cliente.compraCliente(clientes.getFirst(), Empresa.produtos.getFirst().getPreco());
-             Empresa.produtos.getFirst().retirarEstoque(1);
-             System.out.println("saldo atual: " + clientes.getFirst().getToken());
-         }
+        boolean vf;
+        int op=0;
+        do{
+            empresas.getFirst().showProdutos();
+            System.out.print("Digite o codigo do produto que deseja comprar: ");
+            String code = in.nextLine();
+            vf = buscaProduto(code);
+            if (vf == true){
+                Cliente.compraCliente(clientes.getFirst(), Empresa.produtos.getFirst().getPreco());
+                Empresa.produtos.getFirst().retirarEstoque(1);
+                System.out.println("saldo atual: " + clientes.getFirst().getToken());
+            }else{
+                System.out.println("Código informado inválido... Deseja tentar novamente?");
+                System.out.println("[0] para Não / [1] para Sim.");
+                System.out.print("Digite: ");
+                op = in.nextInt();
+                while(op!=0||op!=1){
+                    System.out.print("Opção inválida digite novamente: ");
+                    op = in.nextInt();
+                }
+            }
+        }while (op != 0);
     }
 
 

@@ -59,7 +59,7 @@ public class Produto {
 
     public void retirarEstoque(int quantidade) {
         if (estoque > quantidade) {
-            estoque -= quantidade;
+            estoque = estoque - quantidade;
         } else {
             System.out.println("Estoque indisponivel");
         }
