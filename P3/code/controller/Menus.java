@@ -26,7 +26,7 @@ public class Menus {
                     if (cl == 1) {
                         boolean tfc = loginCliente();
                         if (tfc == true) {// Cliente entrou na conta
-                            /* aqui estarÃ£o todas as opcoes do cliente */
+                            /* aqui estarão todas as opcoes do cliente */
                             do {
                                 opcaoCliente();
                                 opC = in.nextInt();
@@ -244,10 +244,6 @@ public class Menus {
                 System.out.println("[0] para Não / [1] para Sim.");
                 System.out.print("Digite: ");
                 op = in.nextInt();
-                while(op!=0||op!=1){
-                    System.out.print("Opção inválida digite novamente: ");
-                    op = in.nextInt();
-                }
             }
         }while (op != 0);
     }
