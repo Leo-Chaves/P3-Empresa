@@ -122,9 +122,15 @@ public class Menus {
                     }
                 } while (cl != 0);
                 break;
-            } else if (op == 0) {
+            }else if(op == 9){
+                Empresa empresa = new Empresa("teste", "12345678", "12345678901234", 10000, "123");
+                Cliente cliente = new Cliente("123", "Hugo", "M", "12348765", "12345678901", 100, "123");
+                empresas.add(empresa);
+                clientes.add(cliente);
+            } 
+            else if (op == 0) {
                 System.out.println("ENCERRANDO...");
-            } else {
+            }else {
                 System.out.println("Opção inválida...");
                 throw new IllegalAccessException("");
             }
@@ -249,16 +255,16 @@ public class Menus {
                         vf = buscaProduto(code);
                         if (vf == true){
                             int t=0;
-                            Produto p = Empresa.produtos.get(t);
+                            Produto p = empresas.getFirst().produtos.get(t);
                             for (t = 0; t < Empresa.produtos.size(); t++) {
                                 p = Empresa.produtos.get(t);
                                 if (p.getCodigo().equalsIgnoreCase(code)) {
                                     break;
-                                }else{}
+                                }
                             }
-                            if(aux.getToken()<p.getPreco()){
+                            if(aux.getToken() >= p.getPreco()){
                                 Empresa.produtos.getFirst().retirarEstoque(code, 1);
-                                aux.setToken(aux.getToken()-p.getPreco());
+                                aux.setToken(aux.getToken() - p.getPreco());
                                 System.out.println("saldo atual: " + aux.getToken());
                             }else{
                                 System.out.println("");
