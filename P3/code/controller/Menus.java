@@ -110,6 +110,10 @@ public class Menus {
                                         }
                                     } while (dc != 0);
                                 }
+                                else if(opE == 3){
+                                    //exibir saldo
+                                    exibirSaldo();
+                                }
                             } while (opE != 0);
                         }
                     } else if (cl == 2) {// Opcoes de cadastrar
@@ -317,9 +321,13 @@ public class Menus {
 
     public static void opcaoEmpresa() {
         System.out.println("Menu");
-        System.out.println("[1] para adicionar um novo produto");
-        System.out.println("[2] para alterar seus dados");
+        System.out.println("[1] para adicionar um novo produto.");
+        System.out.println("[2] para alterar seus dados.");
+        System.out.println("[3] para exibir saldo.");
         System.out.println("[0] para Sair!");
+    }
+    public static void exibirSaldo(){
+        System.out.println(empresas.getFirst().getSaldo());
     }
 
     public static void menuAlterarDadosEmpresa() {
