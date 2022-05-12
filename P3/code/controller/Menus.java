@@ -31,7 +31,7 @@ public class Menus {
                                 opcaoCliente();
                                 opC = in.nextInt();
                                 if (opC == 1) {
-                                    // Exibir a lista de produtos para compra
+                                    // Compra de produtos
                                     compraProduto();
                                 } else if (opC == 2) {
                                     // Comprar tokens
@@ -230,22 +230,61 @@ public class Menus {
         Scanner in = new Scanner(System.in);
         boolean vf;
         int op=0;
-        do{
-            empresas.getFirst().showProdutos();
-            System.out.print("Digite o codigo do produto que deseja comprar: ");
-            String code = in.nextLine();
-            vf = buscaProduto(code);
-            if (vf == true){
-                Cliente.compraCliente(clientes.getFirst(), Empresa.produtos.getFirst().getPreco());
-                Empresa.produtos.getFirst().retirarEstoque(1);
-                System.out.println("saldo atual: " + clientes.getFirst().getToken());
-            }else{
-                System.out.println("Código informado inválido... Deseja tentar novamente?");
-                System.out.println("[0] para Não / [1] para Sim.");
-                System.out.print("Digite: ");
-                op = in.nextInt();
+        System.out.println("Digite os dados abaixo para realizar uma compra.");
+        System.out.print("Nome: ");
+        String nome = in.next();
+        System.out.print("Senha: ");
+        String senha = in.next();
+        System.out.println("");
+        boolean v = buscaLoginCliente(nome, senha);
+        if (v == true) {
+            for (int i = 0; i < clientes.size(); i++) {
+                Cliente aux = clientes.get(i);
+                if (aux.getNome().equalsIgnoreCase(nome) && aux.getSenha().equals(senha)) {
+                    do{
+                        empresas.getFirst().showProdutos();
+                        System.out.println("");
+                        System.out.print("Digite o codigo do produto que deseja comprar: ");
+                        String code = in.next();
+                        vf = buscaProduto(code);
+                        if (vf == true){
+                            int t=0;
+                            Produto p = Empresa.produtos.get(t);
+                            for (t = 0; t < Empresa.produtos.size(); t++) {
+                                p = Empresa.produtos.get(t);
+                                if (p.getCodigo().equalsIgnoreCase(code)) {
+                                    break;
+                                }else{}
+                            }
+                            if(aux.getToken()<p.getPreco()){
+                                Empresa.produtos.getFirst().retirarEstoque(code, 1);
+                                aux.setToken(aux.getToken()-p.getPreco());
+                                System.out.println("saldo atual: " + aux.getToken());
+                            }else{
+                                System.out.println("");
+                                System.out.println("Saldo insuficiente... deposite tokens para futuras compras.");
+                                System.out.println("");
+                            }
+                        }else{
+                            System.out.println("Código informado inválido... Deseja tentar novamente?");
+                            System.out.println("[0] para Não / [1] para Sim.");
+                            System.out.print("Digite: ");
+                            op = in.nextInt();
+                        }
+                    }while (op != 0);
+                }
             }
-        }while (op != 0);
+        }else{
+            System.out.println("");
+            System.out.println("Nome ou senha incorretos... deseja tentar novamente?");
+            System.out.println("[0] para Não / [1] para Sim.");
+            int opc = in.nextInt();
+            if(opc==1){
+                compraProduto();
+            }else{
+                System.out.println("");
+            }
+        }
     }
 
 
@@ -434,7 +473,7 @@ public class Menus {
         // Metodo para buscar na lista de cliente para fazer login
         for (int i = 0; i < Empresa.produtos.size(); i++) {
             Produto aux = Empresa.produtos.get(i);
-            if (aux.getNome().equalsIgnoreCase(codigo)) {
+            if (aux.getCodigo().equalsIgnoreCase(codigo)) {
                 return true;
             }
         }
@@ -510,7 +549,7 @@ public class Menus {
 
         System.out.print("Informe o DDD: ");
         String ddd = in.next();
-        System.out.println("Informe o número de telefone: ");
+        System.out.print("Informe o número de telefone: ");
         String numc = in.next();
         String telefone = "(" + ddd + ")" + numc;
 

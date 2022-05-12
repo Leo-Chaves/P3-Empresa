@@ -57,11 +57,18 @@ public class Produto {
         estoque += quantidade;
     }
 
-    public void retirarEstoque(int quantidade) {
-        if (estoque > quantidade) {
-            estoque = estoque - quantidade;
-        } else {
-            System.out.println("Estoque indisponivel");
+    public void retirarEstoque(String codigo, int quantidade) {
+        for(int i=0;i!=Empresa.produtos.size();i++){
+            Produto aux = Empresa.produtos.get(i);
+            if (aux.getCodigo().equalsIgnoreCase(codigo)) {
+                if (aux.estoque >= quantidade) {
+                    aux.estoque = aux.estoque - quantidade;
+                } else {
+                    System.out.println("");
+                    System.out.println("Estoque indisponivel.");
+                    System.out.println("");
+                }
+            }
         }
     }
 }
