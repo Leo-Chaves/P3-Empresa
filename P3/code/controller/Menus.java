@@ -296,7 +296,7 @@ public class Menus {
 
     public static void compraToken() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Digite os dados abaixo para alteração de dados do perfil");
+        System.out.println("Digite os dados abaixo para confirmação de compra de tokens");
         System.out.print("Nome: ");
         String nome = in.next();
         System.out.print("Senha: ");
