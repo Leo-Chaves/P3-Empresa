@@ -4,8 +4,10 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Menus {
+    
     public static LinkedList<Cliente> clientes = new LinkedList<Cliente>();
     public static LinkedList<Empresa> empresas = new LinkedList<Empresa>();
+
     private static int op, cl, opC, opCA, opADC, opE, opADE;
 
     public static void menuPrincipal() throws IllegalAccessException {
@@ -36,13 +38,12 @@ public class Menus {
                                 } else if (opC == 2) {
                                     // Comprar tokens
                                     compraToken();
-
                                 } else if (opC == 3) {
                                     // Criar um menu novo com as opcoes relaciondas a amigos dentro de cliente
                                     do {
                                         menuClienteAmigo();
                                         opCA = in.nextInt();
-                                        if (opCA == 1) {
+                                        if (opCA == 1) {// PRECISA SER FEITO!!!!!
                                             // Cliente e = ;
                                             // adicionar um cliente
                                             // clientes.add(e);
@@ -95,7 +96,6 @@ public class Menus {
                                 if (opE == 1) {
                                     // adicionar um produto no catalogo
                                     cadastroProduto();
-
                                 } else if (opE == 2) {
                                     // para alterar seus dados
                                     int dc;
@@ -151,6 +151,7 @@ public class Menus {
     }
 
     public static void menuCL() {// Menu cadastro ou login
+        System.out.println("");
         System.out.println("Deseja logar ou cadastrar?");
         System.out.println("[1] para logar");
         System.out.println("[2] para cadastrar");
@@ -159,6 +160,7 @@ public class Menus {
     }
 
     public static void menuClienteAmigo() {
+        System.out.println("");
         System.out.println("Menu");
         System.out.println("[1] para adicionar um amigo");
         System.out.println("[2] para remover um amigo");
@@ -169,6 +171,7 @@ public class Menus {
     public static void menuAlterarDadosCliente() {
         Scanner in = new Scanner(System.in);
         int opADC;
+        System.out.println("");
         System.out.println("Digite os dados abaixo para alteração de dados do perfil");
         System.out.print("Nome: ");
         String nome = in.next();
@@ -229,6 +232,7 @@ public class Menus {
                 }
             }
         } else {
+            System.out.println("");
             System.out.println("Nome ou senha incorretos... Tente novamente.");
             System.out.println("");
             opADC = 0;
@@ -240,6 +244,7 @@ public class Menus {
         Scanner in = new Scanner(System.in);
         boolean vf;
         int op=0;
+        System.out.println("");
         System.out.println("Digite os dados abaixo para realizar uma compra.");
         System.out.print("Nome: ");
         String nome = in.next();
@@ -276,6 +281,7 @@ public class Menus {
                                 System.out.println("");
                             }
                         }else{
+                            System.out.println("");
                             System.out.println("Código informado inválido... Deseja tentar novamente?");
                             System.out.println("[0] para Não / [1] para Sim.");
                             System.out.print("Digite: ");
@@ -300,6 +306,7 @@ public class Menus {
 
     public static void compraToken() {
         Scanner in = new Scanner(System.in);
+        System.out.println("");
         System.out.println("Digite os dados abaixo para confirmação de compra de tokens");
         System.out.print("Nome: ");
         String nome = in.next();
@@ -320,6 +327,7 @@ public class Menus {
     }
 
     public static void opcaoEmpresa() {
+        System.out.println("");
         System.out.println("Menu");
         System.out.println("[1] para adicionar um novo produto.");
         System.out.println("[2] para alterar seus dados.");
@@ -327,12 +335,15 @@ public class Menus {
         System.out.println("[0] para Sair!");
     }
     public static void exibirSaldo(){
-        System.out.println(empresas.getFirst().getSaldo());
+        System.out.println("");
+        System.out.println("[ R$"+empresas.getFirst().getSaldo()+" ]");
+        System.out.println("");
     }
 
     public static void menuAlterarDadosEmpresa() {
         Scanner in = new Scanner(System.in);
         int opADC;
+        System.out.println("");
         System.out.println("Digite os dados abaixo para alteração de dados do perfil");
         System.out.print("CNPJ: ");
         String cnpj = in.next();
@@ -383,6 +394,7 @@ public class Menus {
                 }
             }
         } else {
+            System.out.println("");
             System.out.println("CNPJ ou senha incorretos... Tente novamente.");
             System.out.println("");
             opADC = 0;
@@ -390,6 +402,7 @@ public class Menus {
     }
 
     public static void opcaoCliente() {
+        System.out.println("");
         System.out.println("Menu");
         System.out.println("[1] para comprar produtos");
         System.out.println("[2] para comprar Tokens");
@@ -404,6 +417,7 @@ public class Menus {
         Scanner in = new Scanner(System.in);
         boolean retorno;
         do {
+            System.out.println("");
             System.out.println("Digite");
             System.out.print("Nome: ");
             String nome = in.next();
@@ -411,6 +425,7 @@ public class Menus {
             String senha = in.next();
             retorno = buscaLoginCliente(nome, senha);
             if (retorno == false) {// Aqui ele da a escolha para tentar fazer login novamente
+                System.out.println("");
                 System.out.println("Login inválido... Deseja tentar denovo?");
                 System.out.println("Digite [1] para sim,[2] para nÃ£o: ");
                 int a = in.nextInt();
@@ -424,6 +439,7 @@ public class Menus {
 
     public static void cadastroCliente() {
         Scanner in = new Scanner(System.in);
+        System.out.println("");
         System.out.print("Informe seu nome: ");
         String nome = in.nextLine();
 
@@ -509,6 +525,7 @@ public class Menus {
     public static void cadastroProduto() {
 
         Scanner in = new Scanner(System.in);
+        System.out.println("");
         System.out.print("Informe o nome do produto que deseja vender: ");
         String nome = in.next();
 
@@ -522,6 +539,7 @@ public class Menus {
         String codigo = in.next();
         // Criou um novo produto
         Empresa.cadastrarProduto(nome, preco, codigo, estoque);
+        System.out.println("");
         System.out.println("Produto Cadastrado Com Sucesso!");
 
     }
@@ -530,6 +548,7 @@ public class Menus {
         Scanner in = new Scanner(System.in);
         boolean retorno;
         do {
+            System.out.println("");
             System.out.println("Digite");
             System.out.print("CNPJ: ");
             String cnpj = in.next();
@@ -537,7 +556,8 @@ public class Menus {
             String senha = in.next();
             retorno = buscaLoginEmpresa(cnpj, senha);
             if (retorno == false) {// Aqui ele da a escolha para tentar fazer login novamente
-                System.out.println("Login invÃ¡lido... Deseja tentar denovo?");
+                System.out.println("");
+                System.out.println("Login inválido... Deseja tentar denovo?");
                 System.out.println("Digite [1] para sim,[2] para nÃ£o: ");
                 int a = in.nextInt();
                 if (a == 2) {
@@ -550,7 +570,7 @@ public class Menus {
 
     public static void cadastroEmpresa() {
         Scanner in = new Scanner(System.in);
-
+        System.out.println("");
         System.out.print("Informe o nome da empresa: ");
         String nome = in.next();
 
@@ -575,7 +595,9 @@ public class Menus {
 
         Empresa empresa = new Empresa(nome, telefone, cnpj, saldo, senha);// Criou nova empresa
         empresas.add(empresa);// Adiciona a lista de empresas
+        System.out.println("");
         System.out.println("Empresa cadastrada com sucesso!");
+        
     }
 
     public static boolean buscaLoginEmpresa(String cnpj, String senha) {
