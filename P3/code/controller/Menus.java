@@ -322,6 +322,8 @@ public class Menus {
                 Cliente aux = clientes.get(i);
                 if (aux.getNome().equalsIgnoreCase(nome) && aux.getSenha().equals(senha)) {
                     aux.setToken(aux.getToken() + newToken);
+                    System.out.print("Saldo de Tokens atual");
+                    System.out.print(aux.getToken());
                 }
             }
         }
