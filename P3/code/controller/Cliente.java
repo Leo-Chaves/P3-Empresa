@@ -85,7 +85,7 @@ public class Cliente implements Operações {
 	}
 
 	public void setToken(int token) {
-		this.token = this.token + token;
+		this.token = token;
 	}
 
 	public void addFriend(String codeFriend) {
