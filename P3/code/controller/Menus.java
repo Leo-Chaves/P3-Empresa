@@ -47,11 +47,35 @@ public class Menus {
                                             // Cliente e = ;
                                             // adicionar um cliente
                                             // clientes.add(e);
+                                            System.out.println("Digite o code de seu amigo");
+                                            String codeFriend = in.next();
+                                            boolean vf = buscaLoginCode(codeFriend);
+                                            if (vf == true) {
+                                                for (int i = 0; i < clientes.size(); i++) {
+                                                    Cliente aux = clientes.get(i);
+                                                    if (aux.getCode().equalsIgnoreCase(codeFriend)) {
+                                                        clientes.getFirst().addFriend(codeFriend);
+                                                    }
+                                                }
+                                            }
                                         } else if (opCA == 2) {
                                             // remover um amigo
-                                        } else if (opCA == 3) {
-                                            // enviar um token para amigo
+                                            System.out.println("Digite o code de seu amigo que deseja remover");
+                                            String codeFriend = in.next();
+                                            boolean vf = buscaLoginCode(codeFriend);
+                                            if (vf == true) {
+                                                for (int i = 0; i < clientes.size(); i++) {
+                                                    Cliente aux = clientes.get(i);
+                                                    if (aux.getCode().equalsIgnoreCase(codeFriend)) {
+                                                        clientes.getFirst().removeFriend(codeFriend);
+                                                    }
+                                                }
+                                            }
+                                           
+                                        } else if(opCA == 3){
+                                            clientes.getFirst().showFrieds();
                                         }
+
                                     } while (opCA != 0);
                                 } else if (opC == 4) {
                                     // Alterar dados
@@ -128,7 +152,7 @@ public class Menus {
                 break;
             }else if(op == 9){
                 Empresa empresa = new Empresa("teste", "12345678", "12345678901234", 10000, "123");
-                Cliente cliente = new Cliente("123", "Hugo", "M", "12348765", "12345678901", 100, "123");
+                Cliente cliente = new Cliente("hugo", "Hugo", "M", "12348765", "12345678901", 100, "123");
                 empresas.add(empresa);
                 clientes.add(cliente);
             } 
@@ -164,7 +188,7 @@ public class Menus {
         System.out.println("Menu");
         System.out.println("[1] para adicionar um amigo");
         System.out.println("[2] para remover um amigo");
-        System.out.println("[3] para enviar um Token para um amigo");
+        System.out.println("[3] para mostrar amigos");
         System.out.println("[0] para Voltar!");
     }
 
@@ -615,5 +639,16 @@ public class Menus {
             }
         }
         return true;
+    }
+
+    public static boolean buscaLoginCode(String code) {
+        // Metodo para buscar na lista de cliente para fazer login
+        for (int i = 0; i < clientes.size(); i++) {
+            Cliente aux = clientes.get(i);
+            if (aux.getCode().equalsIgnoreCase(code)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
